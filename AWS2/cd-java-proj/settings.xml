@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <profiles>
+    <profile>
+      <id>default</id>
+      <repositories>
+        <repository>
+          <id>cloudbinary-cb-libs-snapshots-local</id>
+          <name>cloudbinary-cb-libs-snapshots-local</name>
+          <url>https://cloudbinary-191323423716.d.codeartifact.us-east-1.amazonaws.com/maven/cb-libs-snapshots-local/</url>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>default</activeProfile>
+  </activeProfiles>
+  <servers>
+    <server>
+      <id>cloudbinary-cb-libs-snapshots-local</id>
+      <username>aws</username>
+      <password>${env.CODEARTIFACT_AUTH_TOKEN}</password>
+    </server>
+  </servers>
+</settings>

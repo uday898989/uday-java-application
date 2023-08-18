@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+  pre_build:
+    commands:
+      - aws --version
+      #- npm install latest
+      - yum install -y nodejs
+      - node -v
+      - npm --version
+      #- echo "Export Enviroment Varaibles of AWS CodeArtifact Credentials"
+      #- export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain cloudbinary --domain-owner 191323423716 --region us-east-1 --query authorizationToken --output text`
+  build:
+    commands:
+      - echo Build started on `date`
+      #- ls -lrta settings.xml 
+      #- cp -pvr settings.xml ~/.m2/
+      - pwd
+      - ls -lrta
+      - mvn --version
+      - java -version
+      - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=awsdevops-codescan
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      #- aws cp settings.xml s3://cloudbinary.io/
+artifacts:
+  files:
+    - '**/*'
